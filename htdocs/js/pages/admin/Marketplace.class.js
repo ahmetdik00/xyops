@@ -405,7 +405,6 @@ Page.Marketplace = class Marketplace extends Page.PageUtils {
 		var install_btn_text = installed ? `Upgrade ${ucfirst(product.type)}...` : `Install ${ucfirst(product.type)}...`;
 		var install_btn_icon = installed ? 'package-up' : 'package-down';
 		var install_btn_class = 'default';
-		var edit_btn_text = 'Edit...';
 		
 		if (installed && (installed.marketplace.version == product.versions[0])) install_btn_class = '';
 		
@@ -416,7 +415,7 @@ Page.Marketplace = class Marketplace extends Page.PageUtils {
 				
 				html += '<div class="button ' + install_btn_class + ' right phone_collapse" title="' + install_btn_text + '" onClick="$P().do_install_select_version()"><i class="mdi mdi-' + install_btn_icon + '">&nbsp;</i><span>' + install_btn_text + '</span></div>';
 				if (installed) {
-					html += '<div class="button right secondary phone_collapse" title="' + edit_btn_text + '" onClick="$P().do_edit()"><i class="mdi mdi-file-edit-outline">&nbsp;</i><span>' + edit_btn_text + '</span></div>';
+					html += '<div class="button right secondary phone_collapse" title="Clone for editing..." onClick="$P().do_clone()"><i class="mdi mdi-file-edit-outline">&nbsp;</i><span>Clone...</span></div>';
 				}
 				html += '<div class="clear"></div>';
 			html += '</div>'; // title
@@ -575,6 +574,44 @@ Page.Marketplace = class Marketplace extends Page.PageUtils {
 			else return '<span style="color:var(--red); font-weight:bold;"><i class="mdi mdi-alert-rhombus">&nbsp;</i>Outdated</span>';
 		}
 		else return '<span style="color:var(--gray)"><i class="mdi mdi-cancel">&nbsp;</i>Not Installed</span>';
+	}
+	
+	do_clone() {
+		// clone thing for editing
+		var product = this.product;
+		var installed = this.installed;
+		
+		var type_def = config.ui.data_types[ product.type ];
+		if (!type_def) {
+			Debug.trace('warning', "Type def not found: " + product.type);
+			return;
+		}
+		if (!$P(type_def.page)) {
+			Debug.trace('warning', "Page not found: " + type_def.page);
+			return;
+		}
+		
+		var items = app[ type_def.list ];
+		if (!items) {
+			Debug.trace('warning', "Item list not found: " + type_def.list);
+			return;
+		}
+		
+		var item = find_object( items, { id: installed.id } );
+		if (!item) return app.doError(`Cannot find ${type_def.name} to clone: ${installed.id}`);
+		
+		var clone = deep_copy_object(item);
+		clone.title = "Copy of " + clone.title;
+		delete clone.id;
+		delete clone.created;
+		delete clone.modified;
+		delete clone.revision;
+		delete clone.username;
+		delete clone.marketplace;
+		delete clone.stock;
+		
+		$P(type_def.page).clone = clone;
+		Nav.go( type_def.page + '?sub=new' );
 	}
 	
 	do_edit() {
