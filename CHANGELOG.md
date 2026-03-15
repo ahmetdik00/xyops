@@ -1,5 +1,14 @@
 # xyOps Changelog
 
+## Version v1.0.28
+
+> March 15, 2026
+
+- [`28e7b0d`](https://github.com/pixlcore/xyops/commit/28e7b0ddc212dfbaea29d9aaa928edcd6d95e659): Version 1.0.28
+- [`5af7e75`](https://github.com/pixlcore/xyops/commit/5af7e750ff60558430b6058bbc317387e0ac721a): CORS: Add OPTIONS preflight request handler.
+- [`57a7705`](https://github.com/pixlcore/xyops/commit/57a77058446734d225180e5acc82bf61032aa0c3): Alerts Doc: Add section on Universal Alert Actions.  Ref #195.
+- [`0210072`](https://github.com/pixlcore/xyops/commit/021007211896e44deb5ec4350b41d05959f3d3d3): API Doc: Remove incorrect behavior for echo API.
+
 ## Version v1.0.27
 
 > March 15, 2026
