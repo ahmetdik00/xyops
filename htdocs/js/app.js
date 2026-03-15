@@ -65,7 +65,7 @@ app.extend({
 		marked.use({ renderer: {
 			link(href, title, text) {
 				const titleAttr = title ? ` title="${title}"` : '';
-				if (href.match(/^\w+\:\/\//)) return `<a href="${href}" target="_blank"${titleAttr}>${text}<i style="padding-left:3px" class="mdi mdi-open-in-new"></i></a>`;
+				if (href.match(/^\w+\:\/\//) && !text.match(/<.+>/)) return `<a href="${href}" target="_blank"${titleAttr}>${text}<i style="padding-left:3px" class="mdi mdi-open-in-new"></i></a>`;
 				else return `<a href="${href}" ${titleAttr}>${text}</a>`;
 			},
 			checkbox(checked) {
