@@ -1,5 +1,12 @@
 # xyOps Changelog
 
+## Version v1.0.30
+
+> March 16, 2026
+
+- [`b06d0c1`](https://github.com/pixlcore/xyops/commit/b06d0c1780070dde166f808bf5eb1c4ed3d6d7d8): Version 1.0.30
+- [`506265f`](https://github.com/pixlcore/xyops/commit/506265f42fc134e7f1022314843d4b6c0d85510c): Fix possible XSS attack on job detail screen when job description contains raw HTML.
+
 ## Version v1.0.29
 
 > March 16, 2026
