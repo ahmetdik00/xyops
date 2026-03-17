@@ -81,7 +81,7 @@ Page.AlertSetup = class AlertSetup extends Page.PageUtils {
 				}) + '</div>',
 				'<b>' + self.getNiceAlert(item, app.hasPrivilege('edit_alerts')) + '</b>',
 				'<span class="mono">' + item.id + '</span>',
-				self.getNiceGroupList(item.groups, '', 3),
+				self.getNiceGroupList(item.groups, '(All)'),
 				self.getNiceUser(item.username, app.isAdmin()),
 				'<span title="'+self.getNiceDateTimeText(item.created)+'">'+self.getNiceDate(item.created)+'</span>',
 				actions.join(' | ')

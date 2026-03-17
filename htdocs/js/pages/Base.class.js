@@ -50,18 +50,12 @@ Page.Base = class Base extends Page {
 		return html;
 	}
 	
-	getNiceGroupList(groups, glue, max) {
+	getNiceGroupList(groups, none) {
 		// get formatted group list
 		var self = this;
-		if (!glue) glue = ', ';
 		if (typeof(groups) == 'string') groups = groups.split(/\,\s*/);
-		if (!groups || !groups.length) return '(All)';
-		if (max && (groups.length > max)) {
-			var extras = groups.length - max;
-			groups = groups.slice(0, max);
-			return groups.map( function(group) { return self.getNiceGroup(group); } ).join(glue) + glue + ' and ' + extras + ' more';
-		}
-		return groups.map( function(group) { return self.getNiceGroup(group); } ).join(glue);
+		if (!groups || !groups.length) return none || '(None)';
+		return groups.map( function(group) { return self.getNiceGroup(group); } ).join(', ');
 	}
 	
 	getNiceGroup(item, link) {

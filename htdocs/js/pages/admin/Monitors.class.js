@@ -81,7 +81,7 @@ Page.Monitors = class Monitors extends Page.PageUtils {
 				'<div class="td_drag_handle" draggable="true" title="Drag to reorder"><i class="mdi mdi-menu"></i></div>',
 				'<b>' + self.getNiceMonitor(item, app.hasPrivilege('edit_monitors')) + '</b>',
 				'<span class="mono">' + item.id + '</span>',
-				self.getNiceGroupList(item.groups, '', 3),
+				self.getNiceGroupList(item.groups, '(All)'),
 				self.getNiceUser(item.username, app.isAdmin()),
 				'<span title="'+self.getNiceDateTimeText(item.created)+'">'+self.getNiceDate(item.created)+'</span>',
 				actions.join(' | ')
