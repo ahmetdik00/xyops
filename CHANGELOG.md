@@ -1,5 +1,12 @@
 # xyOps Changelog
 
+## Version v1.0.31
+
+> March 17, 2026
+
+- [`c95eeb8`](https://github.com/pixlcore/xyops/commit/c95eeb8803f4af7120b179498714a4a8a23aaa3f): Version 1.0.31
+- [`3facd5c`](https://github.com/pixlcore/xyops/commit/3facd5cd920b1e4a0d0586f4ecdb08c7cbf9dafb): Docker Container Startup: Fix typo which failed to auto-generate the secret key on first launch.  Fixes #202.
+
 ## Version v1.0.30
 
 > March 16, 2026
