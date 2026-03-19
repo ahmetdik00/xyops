@@ -1,5 +1,13 @@
 # xyOps Changelog
 
+## Version v1.0.36
+
+> March 18, 2026
+
+- [`7fc894c`](https://github.com/pixlcore/xyops/commit/7fc894c94df181fb5753569c99bb8807e068548d): Version 1.0.36
+- [`b7f9f9e`](https://github.com/pixlcore/xyops/commit/b7f9f9e91457ac6a7dba86068e4e44c4bd9492bf): Feature: Recover admin access from Docker / containerized systems using a special environment variable.
+- [`233a1f5`](https://github.com/pixlcore/xyops/commit/233a1f53c3e392799f7661ced6bf242e16a4174d): UI Tweak: Set all password input field fonts to monospace.
+
 ## Version v1.0.35
 
 > March 18, 2026
