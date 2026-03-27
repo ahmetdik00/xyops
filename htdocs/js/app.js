@@ -263,7 +263,7 @@ app.extend({
 	
 	presortTables: function() {
 		// pre-sort tables by sort order, or by title
-		['groups', 'plugins', 'categories', 'events', 'channels', 'monitors', 'alerts', 'tags'].forEach( function(key) {
+		['groups', 'plugins', 'categories', 'events', 'channels', 'monitors', 'alerts', 'tags', 'secrets'].forEach( function(key) {
 			if (app[key].length && ('sort_order' in app[key][0])) {
 				app[key].sort( function(a, b) {
 					return (a.sort_order < b.sort_order) ? -1 : 1;
