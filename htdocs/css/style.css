@@ -1414,7 +1414,7 @@ body.dark .dialog_content .form_result {
 }
 
 div.sel_dialog_scrollarea {
-	max-height: 42vh !important;
+	max-height: 38vh !important;
 }
 
 /* JSON Tree Data Explorer */
