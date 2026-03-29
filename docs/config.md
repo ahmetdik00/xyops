@@ -772,7 +772,7 @@ Maximum concurrent I/O operations (default: `32`).
 ### Storage.transactions
 <!-- Title: Transactions -->
 
-Enables transactional writes (default: `true`).
+Enables transactional writes (default: `true`).  Please leave this enabled!
 
 ### Storage.network_transactions
 <!-- Title: Network Transactions -->
