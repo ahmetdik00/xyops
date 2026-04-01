@@ -5737,6 +5737,88 @@ Example response:
 
 
 
+### admin_upgrade_masters
+
+```
+POST /api/app/admin_upgrade_masters/v1
+```
+
+Start a background job to upgrade one or more conductor servers.  Admin only.  Send as HTTP POST with JSON.
+
+Parameters:
+
+| Property Name | Type | Description |
+|---------------|------|-------------|
+| `targets` | Array(String) | **(Required)** One or more online conductor host IDs to upgrade. |
+| `release` | String | **(Required)** Release selector to install.  Use `latest` for the newest stable release, or pass an explicit xyOps tag such as `v1.2.3`.  Available values can be fetched from [get_master_releases](#get_master_releases). |
+| `stagger` | Number | **(Required)** Delay in seconds between dispatching upgrade commands to each remote conductor.  Use `0` for no delay. |
+
+Example request:
+
+```json
+{
+	"targets": ["conductor-b", "conductor-a"],
+	"release": "latest",
+	"stagger": 60
+}
+```
+
+Example response:
+
+```json
+{ "code": 0 }
+```
+
+Notes:
+
+- The API returns immediately after the internal job is queued.
+- If the current primary conductor is included in `targets`, xyOps upgrades all selected backup conductors first, then upgrades the local primary last in the background.  Your client connection will typically drop when the primary begins its self-upgrade.
+- Only currently online backup conductors are eligible for remote dispatch.  Offline conductors, or conductors running in debug mode, are skipped and noted in the internal job details.
+- This API is unavailable in [Air-Gapped Mode](hosting.md#air-gapped-mode) and returns an error if air-gap is enabled.
+- If a maintenance internal job is already running, this API returns an error instead of starting the upgrade.
+
+### admin_upgrade_workers
+
+```
+POST /api/app/admin_upgrade_workers/v1
+```
+
+Start a background job to upgrade one or more worker servers.  Admin only.  Send as HTTP POST with JSON.
+
+Parameters:
+
+| Property Name | Type | Description |
+|---------------|------|-------------|
+| `targets` | Array(String) | **(Required)** One or more worker server IDs and/or server group IDs.  Group IDs are expanded to currently connected workers in the group, and duplicate matches are removed automatically. |
+| `release` | String | **(Required)** Release selector to install on workers, typically `latest`, `airgap`, or an explicit xySat tag such as `v0.9.50`.  Available values can be fetched from [get_satellite_releases](#get_satellite_releases). |
+| `stagger` | Number | **(Required)** Delay in seconds between dispatching upgrade commands to each worker.  Use `0` for no delay. |
+
+Example request:
+
+```json
+{
+	"targets": ["main", "build-worker-01"],
+	"release": "latest",
+	"stagger": 30
+}
+```
+
+Example response:
+
+```json
+{ "code": 0 }
+```
+
+Notes:
+
+- The API returns immediately after the internal job is queued.
+- Only workers that are currently connected at dispatch time are included.  If no active workers match the target selection, the API returns an error.
+- The selected release is persisted into [satellite.version](config.md#satelliteversion) before dispatch so the drop-down menu is pre-populated on next visit.
+- xyOps sends each worker an upgrade command and the worker performs the actual self-upgrade.  Running jobs are allowed to finish first, so upgrades are designed to avoid interrupting active work on the server.
+- If a maintenance internal job is already running, this API returns an error instead of starting the upgrade.
+
+
+
 ## Multi
 
 ### master_register
