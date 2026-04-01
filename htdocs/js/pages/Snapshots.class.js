@@ -1313,6 +1313,10 @@ Page.Snapshots = class Snapshots extends Page.ServerUtils {
 	onDataUpdate(key, data) {
 		// refresh things as needed
 		// if ((this.args.sub == 'view') && (key == 'activeAlerts')) this.getSnapshotAlerts();
+		if ((this.args.sub == 'list') && (pcmd == 'bulk_delete_completed')) {
+			app.cacheBust = hires_time_now();
+			this.doSearch();
+		}
 	}
 	
 	onDeactivate() {

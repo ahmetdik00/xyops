@@ -1078,6 +1078,14 @@ Page.Alerts = class Alerts extends Page.PageUtils {
 		} ); // confirm
 	}
 	
+	onPageUpdate(pcmd, pdata) {
+		// received update specifically for this page
+		if ((this.args.sub == 'list') && (pcmd == 'bulk_delete_completed')) {
+			app.cacheBust = hires_time_now();
+			this.doSearch();
+		}
+	}
+	
 	onDeactivate() {
 		// called when page is deactivated
 		this.div.html( '' );

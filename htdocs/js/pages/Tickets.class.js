@@ -2677,6 +2677,10 @@ Page.Tickets = class Tickets extends Page.PageUtils {
 			Debug.trace("Received ticket update from: " + pdata.username);
 			this.updateTicket( pdata.ticket );
 		}
+		else if ((this.args.sub == 'search') && (pcmd == 'bulk_delete_completed')) {
+			app.cacheBust = hires_time_now();
+			this.doSearch();
+		}
 	}
 	
 	onDeactivate() {

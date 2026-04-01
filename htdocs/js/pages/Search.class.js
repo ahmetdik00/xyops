@@ -899,6 +899,13 @@ Page.Search = class Search extends Page.PageUtils {
 			case 'search_started': this.handleJobFileSearchStart(pdata); break;
 			case 'search_result': this.handleJobFileSearchResult(pdata); break;
 			case 'search_complete': this.handleJobFileSearchComplete(pdata); break;
+			
+			case 'bulk_delete_completed': 
+				if (!this.div.find('#fe_s_match').val().trim().length) {
+					app.cacheBust = hires_time_now();
+					this.doSearch();
+				}
+			break;
 		}
 	}
 	
