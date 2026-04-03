@@ -275,6 +275,11 @@ Page.WebHooks = class WebHooks extends Page.PageUtils {
 			app.showMessage('info', `Revision ${resp.web_hook.revision} has been loaded as a draft edit.  Click 'Save Changes' to complete the rollback.  Note that a new revision number will be assigned.`);
 		}
 		
+		if (!Array.isArray(resp.web_hook.headers)) {
+			// preventing crash re: issue # 238, will remove later
+			resp.web_hook.headers = [];
+		}
+		
 		this.web_hook = resp.web_hook;
 		this.headers = this.web_hook.headers;
 		if (!this.active) return; // sanity
