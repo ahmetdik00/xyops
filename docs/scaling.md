@@ -55,13 +55,7 @@ Or, you can set it globally in the main [satellite.config](config.md#satellite-c
 
 Multi-conductor requires external shared storage so all conductors see the same state. See [Multi-Conductor with Nginx](hosting.md#multi-conductor-with-nginx).
 
-- Use an external storage backend: [S3](https://github.com/jhuckaby/pixl-server-storage#amazon-s3), [MinIO or RustFS](https://github.com/jhuckaby/pixl-server-storage#s3-compatible-services), [Redis](https://github.com/jhuckaby/pixl-server-storage#redis), or a combination. S3 works but has higher latency; MinIO and RustFS (self-hosted S3) perform better on-prem.
-- [Hybrid](https://github.com/jhuckaby/pixl-server-storage#hybrid) engine: You can mix engines for documents vs. files. A common pattern is a fast key/value store for JSON documents, and an object store for binaries:
-  - Example: `Hybrid.docEngine = Redis` (JSON/doc store) and `Hybrid.binaryEngine = S3` (files and large artifacts).
-  - Configure each sub-engine alongside [Hybrid](https://github.com/jhuckaby/pixl-server-storage#hybrid). Ensure Redis persistence (RDB/AOF) is enabled for durability.
-- [SQLite](https://github.com/jhuckaby/pixl-server-storage#sqlite) is great for single-conductor, but for multi-conductor you must switch to a shared backend.
-
-**Tip**: Keep conductors in the same region/AZ as your storage to minimize cross-zone latency. For HTTP ingress, front conductors with Nginx that tracks the active primary.
+For details, see the [Storage Setup Guide](storage.md).
 
 ### NFS Warning
 
