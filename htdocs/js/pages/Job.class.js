@@ -181,7 +181,11 @@ Page.Job = class Job extends Page.PageUtils {
 				if (job.final) {
 					// job is complete
 					if (job.test) html += '<div class="btg_title">Test Summary</div>';
-					else html += '<div class="btg_title">Job Summary</div>';
+					else {
+						var summary_title = 'Job Summary';
+						if (job.label && ((job.type != 'adhoc') || ('plabel' in job))) summary_title += ': ' + job.label;
+						html += '<div class="btg_title">' + summary_title + '</div>';
+					}
 					
 					html += '<div class="btg_buttons">';
 						if (job.event && find_object(app.events, { id: job.event })) {
@@ -983,8 +987,8 @@ Page.Job = class Job extends Page.PageUtils {
 					stub.type = 'adhoc';
 					stub.category = node.data.category;
 					stub.plugin = node.data.plugin;
-					stub.label = node.data.label;
-					stub.icon = node.data.icon;
+					stub.plabel = node.data.label;
+					stub.picon = node.data.icon;
 				}
 				completed_stubs.push(stub);
 			} );

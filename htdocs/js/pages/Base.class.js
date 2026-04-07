@@ -461,8 +461,19 @@ Page.Base = class Base extends Page {
 			var plugin = find_object( app.plugins, { id: job.plugin } );
 			if (!plugin) return 'n/a'; // sanity
 			
-			var title = job.label || plugin.title;
-			var icon_id = job.icon || plugin.icon || 'power-plug-outline';
+			var title = '';
+			var icon_id = '';
+			
+			if ('plabel' in job) {
+				// new
+				title = job.plabel || plugin.title;
+				icon_id = job.picon || plugin.icon || 'power-plug-outline';
+			}
+			else {
+				// legacy
+				title = job.label || plugin.title;
+				icon_id = job.icon || plugin.icon || 'power-plug-outline';
+			}
 			
 			var html = '<span class="nowrap">';
 			var icon = '<i class="mdi mdi-' + icon_id + '"></i>';
@@ -1243,8 +1254,16 @@ Page.Base = class Base extends Page {
 		var plugin = find_object( app.plugins, { id: job.plugin } );
 		
 		if (plugin && (job.type == 'adhoc')) {
-			event_title = job.label || plugin.title;
-			event_icon = job.icon || plugin.icon || 'power-plug-outline';
+			if ('plabel' in job) {
+				// new
+				event_title = job.plabel || plugin.title;
+				event_icon = job.picon || plugin.icon || 'power-plug-outline';
+			}
+			else {
+				// legacy
+				event_title = job.label || plugin.title;
+				event_icon = job.icon || plugin.icon || 'power-plug-outline';
+			}
 		}
 		else if (event) {
 			event_title = event.title;
@@ -1273,7 +1292,9 @@ Page.Base = class Base extends Page {
 		}
 		
 		var nice_id = job.id;
-		if (job.label && (job.type != 'adhoc')) nice_id = strip_html(job.label) + ' (' + job.id + ')';
+		if (job.label && ((job.type != 'adhoc') || ('plabel' in job))) {
+			nice_id = strip_html(job.label) + ' <span style="font-weight:normal;">(' + job.id + ')</span>';
+		}
 		
 		var icon = '<i class="mdi mdi-timer-outline"></i>';
 		if (job.icon) icon = '<i class="mdi mdi-' + job.icon + '"></i>';
