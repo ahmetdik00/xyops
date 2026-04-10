@@ -1268,6 +1268,19 @@ Page.Servers = class Servers extends Page.ServerUtils {
 			caption: 'Override the server group(s) the server should belong to.  By default these are automatically assigned using the server hostname.'
 		});
 		
+		// max jobs
+		html += this.getFormRow({
+			label: 'Max Jobs:',
+			content: this.getFormText({
+				id: 'fe_es_jobs',
+				type: 'number',
+				min: '0',
+				step: '1',
+				value: server.maxJobs || '0'
+			}),
+			caption: 'Optionally set a maximum number of concurrent jobs allowed to run on the server.  Set to `0` for unlimited.'
+		});
+		
 		// user data
 		html += this.getFormRow({
 			label: 'User Data:',
@@ -1291,6 +1304,7 @@ Page.Servers = class Servers extends Page.ServerUtils {
 				enabled: $('#fe_es_enabled').is(':checked'),
 				icon: $('#fe_es_icon').val(),
 				groups: $('#fe_es_groups').val(),
+				maxJobs: parseInt( $('#fe_es_jobs').val() ) || 0,
 				userData: JSON.parse( $('#fe_es_user_data').val() )
 			};
 			

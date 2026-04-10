@@ -1442,6 +1442,10 @@ A list of groups that the server is a member of.
 
 A boolean flag indicating if the server is enabled or not.  Enabled servers will be chosen to run jobs, disabled servers will not.
 
+### Server.maxJobs
+
+An optional limit to place on the server for maximum concurrent running jobs.
+
 ### Server.keywords
 
 A list of keywords associated with the server, used for search and filtering.
