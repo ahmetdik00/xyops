@@ -80,8 +80,10 @@ Selection algorithms:
 
 - `random`: Pick a random server from the eligible set.
 - `round_robin`: Cycle through the eligible set per event; persists across runs.
-- `prefer_first`: Pick the first server after sorting by hostname ascending.
-- `prefer_last`: Pick the last server after sorting by hostname ascending.
+- `prefer_first_natural`: Prefer the first server by the natural order in the [Event.targets](data.md#event-targets) list.
+- `prefer_last_natural`: Prefer the last server by the natural order in the [Event.targets](data.md#event-targets) list.
+- `prefer_first`: Pick the first server after sorting by label or hostname ascending.
+- `prefer_last`: Pick the last server after sorting by label or hostname ascending.
 - `least_cpu`: Pick the server with the lowest current average CPU load (`info.cpu.avgLoad`).
 - `least_mem`: Pick the server with the lowest current active memory usage (`info.memory.active`).
 - `monitor:<id>`: Pick the server with the lowest value of the specified monitor.

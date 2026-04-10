@@ -491,8 +491,10 @@ When multiple servers are in the [Event.targets](#event-targets) array, xyOps us
 | `round_robin` | Pick each server in sequence, then repeat. |
 | `least_cpu` | Pick the server with the least CPU usage. |
 | `least_mem` | Pick the server with the least memory usage. |
-| `prefer_first` | Prefer the first server when alphabetically sorted by hostname. |
-| `prefer_last` | Prefer the last server when alphabetically sorted by hostname. |
+| `prefer_first_natural` | Prefer the first server when naturally sorted by the [Event.targets](#event-targets). |
+| `prefer_last_natural` | Prefer the last server when naturally sorted by the [Event.targets](#event-targets). |
+| `prefer_first` | Prefer the first server when alphabetically sorted by label or hostname. |
+| `prefer_last` | Prefer the last server when alphabetically sorted by label or hostname. |
 | `monitor:_ID_` | Pick the server with the lowest custom monitor value, specified by [Monitor.id](monitor-id) with a `monitor:` prefix. |
 
 ### Event.notes

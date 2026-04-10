@@ -1155,8 +1155,10 @@
 	"event_target_algo_menu": [
 		{ "id": "random", "title": "Random", "icon": "dice-5-outline" },
 		{ "id": "round_robin", "title": "Round Robin", "icon": "radius-outline" },
-		{ "id": "prefer_first", "title": "Prefer First (Alphabetically)", "icon": "sort-ascending" },
-		{ "id": "prefer_last", "title": "Prefer Last (Alphabetically)", "icon": "sort-descending" },
+		{ "id": "prefer_first_natural", "title": "Prefer First (Natural)", "icon": "transfer-left" },
+		{ "id": "prefer_last_natural", "title": "Prefer Last (Natural)", "icon": "transfer-right" },
+		{ "id": "prefer_first", "title": "Prefer First (Alphabetical)", "icon": "sort-ascending" },
+		{ "id": "prefer_last", "title": "Prefer Last (Alphabetical)", "icon": "sort-descending" },
 		{ "id": "least_cpu", "title": "Least CPU Usage", "icon": "chip" },
 		{ "id": "least_mem", "title": "Least Memory Usage", "icon": "memory" }
 	],

@@ -84,7 +84,8 @@ Selection among remaining candidates is controlled by `algo`:
 - `round_robin`: Cycle through candidates in order, persisting position between runs.
 - `least_cpu`: Choose the server reporting the lowest CPU load.
 - `least_mem`: Choose the server reporting the lowest active memory.
-- `prefer_first` / `prefer_last`: Prefer first/last by hostname sort for stability.
+- `prefer_first_natural` / `prefer_last_natural`: Prefer first/last by the natural order in the [Event.targets](data.md#event-targets) list.
+- `prefer_first` / `prefer_last`: Prefer first/last by label or hostname sort for stability.
 - `monitor:_ID_`: Choose the server with the smallest current value of a specific monitor.
 
 The chosen server ID is stored on the job as `server` and the server's group memberships are copied into `groups` for analytics.
